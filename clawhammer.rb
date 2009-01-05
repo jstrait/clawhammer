@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Copyright (c) 2008 Joel Strait
+# Copyright (c) 2009 Joel Strait
 # 
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -65,7 +65,7 @@ def main
     #             0: Length of HUB title
     #          1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
     #         31-34: Length (n) sample data for next sample, unsigned little endian format.
-    #            35: Flag for whether sample should be looped in Hammerhead. Ignored by Clawhammer.
+    #            35: Flag for whether sample should be looped when played in Hammerhead. Ignored by Clawhammer.
     #   36-(n + 36): Raw sample data
     # This format is repeated six times, once for each sample
   
