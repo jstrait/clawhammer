@@ -46,18 +46,28 @@ def main
     hub_file = File.open(ARGV[0], "rb")
     
     SAMPLES_PER_HUB.times{ |i|
+      # HUB Header Format:
+      #   0: Length of HUB title
+      #   1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
+      #   31-34: Size of sample data in bytes, unsigned little endian format.
+      #   35: Flag for whether sample should be stretched to fill a measure when played in Hammerhead.
+      #       Ignored by Clawhammer.
+      
+      # Read HUB title
       hub_title_length = hub_file.sysread(1).unpack("c1")[0]
       hub_title = hub_file.sysread(30).slice(0...hub_title_length)
       
-      num_samples = hub_file.sysread(4).unpack("V1")[0]
+      # Read sample data size
+      sample_data_length = hub_file.sysread(4).unpack("V1")[0]
       
       # Ignore the stretch flag
       hub_file.sysread(1)
       
+      # Read sample data and write wave file
       w = WaveFile.new(NUM_CHANNELS, SAMPLE_RATE, BITS_PER_SAMPLE)
-      w.sample_data = hub_file.sysread(num_samples).unpack("s*")
+      w.sample_data = hub_file.sysread(sample_data_length).unpack("s*")
       w.save("#{hub_title}-#{i + 1}.wav")
-      puts "Sample #{i + 1} extracted, #{num_samples} bytes."
+      puts "Sample #{i + 1} extracted, #{sample_data_length} bytes."
     }
     
     hub_file.close()
