@@ -9,7 +9,7 @@ The HUB file format was reverse-engineered using [FileInspector](http://github.c
 Usage
 =====
 
-    ruby clawhammer.rb [name of HUB file]
+    ruby clawhammer.rb [path of HUB file]
 
 Example:
     ruby clawhammer.rb groove.hub
@@ -28,7 +28,7 @@ Clawhammer uses the [WaveFile gem](http://www.github.com/jstrait/wavefile) to cr
 About the HUB Format
 ====================
 
-The HUB format is very simple. A HUB file contains 6 records, which represent each of the samples stored in the file. Each record contains a header, followed by actual sample data.
+The HUB format is very simple. A HUB file contains 6 records, which represent each of the sounds stored in the file. Each record contains a header, followed by actual sample data.
 
 <table>
 <tr>
@@ -86,4 +86,4 @@ Each header is 36 bytes, and has the following format:
 
 The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header. 
 
-The sample data in each record only includes raw sample data, and not the 44 byte header specified by the \*.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit <http://ccrma.stanford.edu/courses/422/projects/WaveFormat/>).
+The sample data in each record only includes raw sample data, and not any headers specified by the \*.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit <http://ccrma.stanford.edu/courses/422/projects/WaveFormat/>).
