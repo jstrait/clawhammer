@@ -37,16 +37,16 @@ The HUB format is very simple. A HUB file contains 6 records, which represent ea
 <tr>
 <td>Sound #1 Sample Data</td>
 </tr>
-<tr style="border-top: 1px dashed #c1c1c1;">
+<tr>
 <td>Header for Sound #2</td>
 </tr>
 <tr>
 <td>Sound #2 Sample Data</td>
 </tr>
-<tr style="border-top: 1px dashed #c1c1c1;">
+<tr>
 <td>...</td>
 </tr>
-<tr style="border-top: 1px dashed #c1c1c1;">
+<tr>
 <td>Header for Sound #6</td>
 </tr>
 <tr>
