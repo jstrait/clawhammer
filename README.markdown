@@ -30,18 +30,29 @@ About the HUB Format
 
 The HUB format is very simple. A HUB file contains 6 records, which represent each of the samples stored in the file. Each record contains a header, followed by actual sample data.
 
-<pre>[    Header 1   ]
-[ Sample 1 Data ]
-[    Header 2   ]
-[ Sample 2 Data ]
-[    Header 3   ]
-[ Sample 3 Data ]
-[    Header 4   ]
-[ Sample 4 Data ]
-[    Header 5   ]
-[ Sample 5 Data ]
-[    Header 6   ]
-[ Sample 6 Data ]</pre>
+<table>
+<tr>
+<td>Header for Sound #1</td>
+</tr>
+<tr>
+<td>Sound #1 Sample Data</td>
+</tr>
+<tr style="border-top: 1px dashed #c1c1c1;">
+<td>Header for Sound #2</td>
+</tr>
+<tr>
+<td>Sound #2 Sample Data</td>
+</tr>
+<tr style="border-top: 1px dashed #c1c1c1;">
+<td>...</td>
+</tr>
+<tr style="border-top: 1px dashed #c1c1c1;">
+<td>Header for Sound #6</td>
+</tr>
+<tr>
+<td>Sound #6 Sample Data</td>
+</tr>
+</table>
 
 Each header is 36 bytes, and has the following format:
 
@@ -73,6 +84,6 @@ Each header is 36 bytes, and has the following format:
 </tr>
 </table>
 
-The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header.
+The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header. 
 
 The sample data in each record only includes raw sample data, and not the 44 byte header specified by the \*.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit http://ccrma.stanford.edu/courses/422/projects/WaveFormat/ ).
