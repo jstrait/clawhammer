@@ -27,7 +27,7 @@ require 'wavefile'
 
 SOUNDS_PER_HUB = 6
 
-# Hammerhead assumes that all sounds are:
+# HammerHead assumes that all sounds are:
 #   1 channel (mono)
 #   44100 samples per second (sample rate)
 #   16-bit
@@ -49,7 +49,7 @@ else
     #   0: Length of HUB title
     #   1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
     #   31-34: Size of sample data in bytes, unsigned little endian format.
-    #   35: Flag for whether sound should be stretched to fill a measure when played in Hammerhead.
+    #   35: Flag for whether sound should be stretched to fill a measure when played in HammerHead.
     #       Ignored by Clawhammer.
     
     # Read HUB title

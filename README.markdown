@@ -1,7 +1,7 @@
 What Is It?
 ===========
 
-[Hammerhead](http://www.threechords.com/hammerhead/introduction.shtml) is a old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. Clawhammer.rb allows you to extract the samples out of a HUB file into individual \*.wav files. This allows you to use the samples in modern programs like Logic or GarageBand.
+[HammerHead](http://www.threechords.com/hammerhead/introduction.shtml) is a old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. Clawhammer.rb allows you to extract the samples out of a HUB file into individual \*.wav files. This allows you to use the samples in modern programs like Logic or GarageBand.
 
 The HUB file format was reverse-engineered using [FileInspector](http://github.com/jstrait/fileinspector/tree/master).
 
@@ -79,11 +79,11 @@ Each header is 36 bytes, and has the following format:
 </tr>
 <tr>
     <td>35:</td>
-    <td>Flag for whether sound should be stretched to fill a full measure when played in Hammerhead. (For example, a drum loop). Ignored by Clawhammer.</td>
+    <td>Flag for whether sound should be stretched to fill a full measure when played in HammerHead. (For example, a drum loop). Ignored by Clawhammer.</td>
     <td>0x01 for true, 0x00 for false</td>
 </tr>
 </table>
 
 The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header. 
 
-The sample data in each record only includes raw sample data, and not any headers specified by the \*.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit <http://ccrma.stanford.edu/courses/422/projects/WaveFormat/>).
+The sample data in each record only includes raw sample data, and not any headers specified by the \*.wav format. HammerHead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit <http://ccrma.stanford.edu/courses/422/projects/WaveFormat/>).
