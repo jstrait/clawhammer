@@ -45,6 +45,34 @@ The HUB format is very simple. A HUB file contains 6 records, which represent ea
 
 Each header is 36 bytes, and has the following format:
 
+<table>
+<tr>
+    <th>Bytes</th>
+    <th>Description</th>
+    <th>Data Format</th>
+</tr>
+<tr>
+    <td>0:</td>
+    <td>Length of the HUB title, in bytes.</td>
+    <td>Integer. Signed or unsigned doesn't matter, since the maximum valid value is 30.</td>
+</tr>
+<tr>
+    <td>1-30:</td>
+    <td>HUB title. If HUB title is less than 30 characters, the extra bytes will be garbage. The title will be identical for each header.</td>
+    <td>1-byte ASCII characters</td>
+</tr>
+<tr>
+    <td>31-34:</td>
+    <td>Length of the sound's sample data, in bytes.</td>
+    <td>Unsigned, little-endian</td>
+</tr>
+<tr>
+    <td>35:</td>
+    <td>Flag for whether sample should be stretched to fill a full measure when played in Hammerhead. (For example, a drum loop). Ignored by Clawhammer.</td>
+    <td>0x01 for true, 0x00 for false</td>
+</tr>
+</table>
+
 Byte 0: Length of HUB title.
   1-30: HUB title. If HUB title is less than 30 characters,
         remaining bytes are garbage. It will be identical for each record.
