@@ -3,7 +3,7 @@ What Is It?
 
 Hammerhead (<http://www.threechords.com/hammerhead/>) is a old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. Clawhammer.rb allows you to extract the samples out of a HUB file into individual \*.wav files. This allows you to use the samples in modern programs like Logic or GarageBand.
 
-The HUB file format was reverse-engineered using [FileInspector.rb](http://github.com/jstrait/fileinspector/tree/master). For more on the HUB file format, see section below.
+The HUB file format was reverse-engineered using [FileInspector](http://github.com/jstrait/fileinspector/tree/master).
 
 
 Usage
