@@ -1,7 +1,7 @@
 What Is It?
 ===========
 
-Hammerhead (<http://www.threechords.com/hammerhead/>) is a old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. Clawhammer.rb allows you to extract the samples out of a HUB file into individual *.wav files. This allows you to use the samples in any music program that supports *.wav (just about everything).
+Hammerhead (<http://www.threechords.com/hammerhead/>) is a old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. Clawhammer.rb allows you to extract the samples out of a HUB file into individual \*.wav files. This allows you to use the samples in any music program that supports \*.wav (just about everything).
 
 The HUB file format was reverse-engineered using [FileInspector.rb](http://github.com/jstrait/fileinspector/tree/master). For more on the HUB file format, see section below.
 
@@ -21,6 +21,9 @@ Output files:
     Groove-5.wav
     Groove-6.wav
 
+Clawhammer uses the [WaveFile gem](http://www.github.com/jstrait/wavefile) to create the output wave files. Therefore, you will need to have the gem installed on your machine. To do so, run the following command:
+
+	sudo gem install jstrait-wavefile -s http://gems.github.com
 
 About the HUB Format
 ====================
@@ -50,4 +53,4 @@ Byte 0: Length of HUB title.
 
 The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header.
 
-The sample data in each record only includes raw sample data, and not the 44 byte header specified by the *.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output *.wav file will be identical, expect for the payload size. (For more on the *.wav format, visit http://ccrma.stanford.edu/courses/422/projects/WaveFormat/ ).
+The sample data in each record only includes raw sample data, and not the 44 byte header specified by the \*.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit http://ccrma.stanford.edu/courses/422/projects/WaveFormat/ ).
