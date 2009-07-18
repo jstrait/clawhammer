@@ -79,7 +79,7 @@ Each header is 36 bytes, and has the following format:
 </tr>
 <tr>
     <td>35:</td>
-    <td>Flag for whether sample should be stretched to fill a full measure when played in Hammerhead. (For example, a drum loop). Ignored by Clawhammer.</td>
+    <td>Flag for whether sound should be stretched to fill a full measure when played in Hammerhead. (For example, a drum loop). Ignored by Clawhammer.</td>
     <td>0x01 for true, 0x00 for false</td>
 </tr>
 </table>
