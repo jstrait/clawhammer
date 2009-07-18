@@ -73,12 +73,6 @@ Each header is 36 bytes, and has the following format:
 </tr>
 </table>
 
-Byte 0: Length of HUB title.
-  1-30: HUB title. If HUB title is less than 30 characters,
-        remaining bytes are garbage. It will be identical for each record.
- 31-34: Length of sample data, in unsigned little-endian format.
-    35: Flag for whether sample should be looped when played in Hammerhead. Ignored by Clawhammer.
-
 The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header.
 
 The sample data in each record only includes raw sample data, and not the 44 byte header specified by the \*.wav format. Hammerhead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit http://ccrma.stanford.edu/courses/422/projects/WaveFormat/ ).
