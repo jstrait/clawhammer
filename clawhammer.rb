@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Copyright (c) 2009 Joel Strait
+# Copyright (c) 2009-10 Joel Strait
 # 
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -65,8 +65,9 @@ else
     # Read sample data and write wave file
     w = WaveFile.new(NUM_CHANNELS, SAMPLE_RATE, BITS_PER_SAMPLE)
     w.sample_data = hub_file.sysread(sample_data_length).unpack("s*")
-    w.save("#{hub_title}-#{i + 1}.wav")
-    puts "Sound #{i + 1} extracted, #{sample_data_length} bytes."
+    output_file_name = "#{hub_title}-#{i + 1}.wav"
+    w.save(output_file_name)
+    puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
   }
   
   hub_file.close()
