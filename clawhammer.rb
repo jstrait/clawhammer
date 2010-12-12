@@ -55,6 +55,7 @@ else
     # Read HUB title
     hub_title_length = hub_file.sysread(1).unpack("c1")[0]
     hub_title = hub_file.sysread(30).slice(0...hub_title_length)
+    hub_title = hub_title.downcase.gsub(" ", "_")
     
     # Read sample data size
     sample_data_length = hub_file.sysread(4).unpack("V1")[0]
