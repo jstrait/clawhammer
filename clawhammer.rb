@@ -41,35 +41,35 @@ if ARGV[0] == nil
   puts "  ruby clawhammer.rb [path of *.hub file]"
   puts ""
   exit()
-else
-  hub_file = File.open(ARGV[0], "rb")
-  
-  SOUNDS_PER_HUB.times{ |i|
-    # HUB Header Format:
-    #   0: Length of HUB title
-    #   1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
-    #   31-34: Size of sample data in bytes, unsigned little endian format.
-    #   35: Flag for whether sound should be stretched to fill a measure when played in HammerHead.
-    #       Ignored by Clawhammer.
-    
-    # Read HUB title
-    hub_title_length = hub_file.sysread(1).unpack("c1")[0]
-    hub_title = hub_file.sysread(30).slice(0...hub_title_length)
-    hub_title = hub_title.downcase.gsub(" ", "_")
-    
-    # Read sample data size
-    sample_data_length = hub_file.sysread(4).unpack("V1")[0]
-    
-    # Ignore the stretch flag
-    hub_file.sysread(1)
-    
-    # Read sample data and write wave file
-    w = WaveFile.new(NUM_CHANNELS, SAMPLE_RATE, BITS_PER_SAMPLE)
-    w.sample_data = hub_file.sysread(sample_data_length).unpack("s*")
-    output_file_name = "#{hub_title}-#{i + 1}.wav"
-    w.save(output_file_name)
-    puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
-  }
-  
-  hub_file.close()
 end
+
+hub_file = File.open(ARGV[0], "rb")
+  
+SOUNDS_PER_HUB.times do |i|
+  # HUB Header Format:
+  #   0: Length of HUB title
+  #   1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
+  #   31-34: Size of sample data in bytes, unsigned little endian format.
+  #   35: Flag for whether sound should be stretched to fill a measure when played in HammerHead.
+  #       Ignored by Clawhammer.
+
+  # Read HUB title
+  hub_title_length = hub_file.sysread(1).unpack("c1")[0]
+  hub_title = hub_file.sysread(30).slice(0...hub_title_length)
+  hub_title = hub_title.downcase.gsub(" ", "_")
+  
+  # Read sample data size
+  sample_data_length = hub_file.sysread(4).unpack("V1")[0]
+  
+  # Ignore the stretch flag
+  hub_file.sysread(1)
+  
+  # Read sample data and write wave file
+  w = WaveFile.new(NUM_CHANNELS, SAMPLE_RATE, BITS_PER_SAMPLE)
+  w.sample_data = hub_file.sysread(sample_data_length).unpack("s*")
+  output_file_name = "#{hub_title}-#{i + 1}.wav"
+  w.save(output_file_name)
+  puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
+end
+  
+hub_file.close()
