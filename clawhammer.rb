@@ -25,11 +25,6 @@
 gem 'wavefile', '=0.6.0'
 require 'wavefile'
 
-SOUNDS_PER_HUB = 6
-
-# HammerHead assumes that all sounds are in this format
-SAMPLE_FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
-
 if ARGV[0] == nil
   puts ""
   puts "Usage:"
@@ -37,6 +32,11 @@ if ARGV[0] == nil
   puts ""
   exit
 end
+
+SOUNDS_PER_HUB = 6
+
+# HammerHead assumes that all sounds are in this format
+SAMPLE_FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
 
 hub_file = File.open(ARGV[0], "rb")
   
