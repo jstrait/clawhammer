@@ -39,7 +39,7 @@ SOUNDS_PER_HUB = 6
 SAMPLE_FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
 
 hub_file = File.open(ARGV[0], "rb")
-  
+
 SOUNDS_PER_HUB.times do |i|
   # Each sound is stored in a record containing these header fields,
   # followed by the sound's raw sample data:
@@ -54,13 +54,13 @@ SOUNDS_PER_HUB.times do |i|
   hub_title_length = hub_file.sysread(1).unpack("c1")[0]
   hub_title = hub_file.sysread(30).slice(0...hub_title_length)
   hub_title = hub_title.downcase.gsub(" ", "_")
-  
+
   # Read sample data size
   sample_data_length = hub_file.sysread(4).unpack("V1")[0]
-  
+
   # Ignore the stretch flag
   hub_file.sysread(1)
-  
+
   # Read sample data and write wave file
   output_file_name = "#{hub_title}-#{i + 1}.wav"
   WaveFile::Writer.new(output_file_name, SAMPLE_FORMAT) do |writer|
@@ -69,5 +69,5 @@ SOUNDS_PER_HUB.times do |i|
   end
   puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
 end
-  
+
 hub_file.close
