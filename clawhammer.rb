@@ -22,7 +22,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-require 'rubygems'  # For Ruby pre-1.9
+gem 'wavefile', '=0.6.0'
 require 'wavefile'
 
 SOUNDS_PER_HUB = 6
@@ -31,9 +31,7 @@ SOUNDS_PER_HUB = 6
 #   1 channel (mono)
 #   44100 samples per second (sample rate)
 #   16-bit
-NUM_CHANNELS = :mono
-SAMPLE_RATE = 44100
-BITS_PER_SAMPLE = 16
+FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
 
 if ARGV[0] == nil
   puts ""
@@ -65,10 +63,11 @@ SOUNDS_PER_HUB.times do |i|
   hub_file.sysread(1)
   
   # Read sample data and write wave file
-  w = WaveFile.new(NUM_CHANNELS, SAMPLE_RATE, BITS_PER_SAMPLE)
-  w.sample_data = hub_file.sysread(sample_data_length).unpack("s*")
   output_file_name = "#{hub_title}-#{i + 1}.wav"
-  w.save(output_file_name)
+  WaveFile::Writer.new(output_file_name, FORMAT) do |writer|
+    samples = hub_file.sysread(sample_data_length).unpack("s*")
+    writer.write(WaveFile::Buffer.new(samples, FORMAT))
+  end
   puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
 end
   
