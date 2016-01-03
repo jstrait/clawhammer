@@ -67,7 +67,7 @@ SOUNDS_PER_HUB.times do |i|
     samples = hub_file.sysread(sample_data_length).unpack("s<*")
     writer.write(WaveFile::Buffer.new(samples, SAMPLE_FORMAT))
   end
-  puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
+  puts "Sound ##{i + 1} extracted, written to #{output_file_name}"
 end
 
 hub_file.close
