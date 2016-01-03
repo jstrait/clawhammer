@@ -24,7 +24,7 @@ This will create six output files:
     groove-5.wav
     groove-6.wav
 
-Clawhammer uses the [WaveFile gem](http://www.github.com/jstrait/wavefile) to create the output wave files. Therefore, you'll need to have this gem installed on your machine. To do so, run the following command:
+Clawhammer uses the [WaveFile gem](http://wavefilegem.com/) to create the output wave files. Therefore, you'll need to have this gem installed on your machine. To do so, run the following command:
 
   	gem install wavefile 
 
