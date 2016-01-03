@@ -41,12 +41,14 @@ SAMPLE_FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
 hub_file = File.open(ARGV[0], "rb")
   
 SOUNDS_PER_HUB.times do |i|
-  # HUB Header Format:
-  #   0: Length of HUB title
-  #   1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
-  #   31-34: Size of sample data in bytes, unsigned little endian format.
-  #   35: Flag for whether sound should be stretched to fill a measure when played in HammerHead.
-  #       Ignored by Clawhammer.
+  # Each sound is stored in a record containing these header fields,
+  # followed by the sound's raw sample data:
+  #   Byte      0: Length of HUB title in bytes
+  #   Bytes  1-30: HUB title. If HUB title is less than 30 bytes, remaining bytes are garbage.
+  #                Normally the same title is repeated for each sound file.
+  #   Bytes 31-34: Size of sample data in bytes, unsigned little endian format.
+  #   Bytes    35: Flag for whether sound should be stretched to fill a measure when played in HammerHead.
+  #                Ignored by Clawhammer.
 
   # Read HUB title
   hub_title_length = hub_file.sysread(1).unpack("c1")[0]
