@@ -35,7 +35,7 @@ if ARGV[0] == nil
   puts "Usage:"
   puts "  ruby clawhammer.rb [path of *.hub file]"
   puts ""
-  exit()
+  exit
 end
 
 hub_file = File.open(ARGV[0], "rb")
@@ -68,4 +68,4 @@ SOUNDS_PER_HUB.times do |i|
   puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
 end
   
-hub_file.close()
+hub_file.close
