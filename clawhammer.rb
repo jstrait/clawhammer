@@ -64,7 +64,7 @@ SOUNDS_PER_HUB.times do |i|
   # Read sample data and write wave file
   output_file_name = "#{hub_title}-#{i + 1}.wav"
   WaveFile::Writer.new(output_file_name, SAMPLE_FORMAT) do |writer|
-    samples = hub_file.sysread(sample_data_length).unpack("s*")
+    samples = hub_file.sysread(sample_data_length).unpack("s<*")
     writer.write(WaveFile::Buffer.new(samples, SAMPLE_FORMAT))
   end
   puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
