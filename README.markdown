@@ -1,7 +1,7 @@
 What Is It?
 ===========
 
-[HammerHead](http://www.threechords.com/hammerhead/introduction.shtml) is an old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. Clawhammer.rb allows you to extract the sounds out of a HUB file into individual \*.wav files. This allows you to use the sounds in modern programs like Logic or GarageBand.
+[HammerHead](http://www.threechords.com/hammerhead/introduction.shtml) is an old drum machine for Windows. One of its features allows you to import new drum sounds using a file format called HUB. `clawhammer.rb` allows you to extract the sounds out of a HUB file into individual `*.wav` files. This allows you to use the sounds in modern programs like Logic or GarageBand.
 
 The HUB file format was reverse-engineered using [FileInspector](http://github.com/jstrait/fileinspector/tree/master).
 
@@ -11,19 +11,22 @@ Usage
 
     ruby clawhammer.rb [path of HUB file]
 
-Example:
+For example:
+
     ruby clawhammer.rb groove.hub
-Output files:
-    Groove-1.wav
-    Groove-2.wav
-    Groove-3.wav
-    Groove-4.wav
-    Groove-5.wav
-    Groove-6.wav
 
-Clawhammer uses the [WaveFile gem](http://www.github.com/jstrait/wavefile) to create the output wave files. Therefore, you will need to have the gem installed on your machine. To do so, run the following command:
+This will create six output files:
 
-	sudo gem install jstrait-wavefile -s http://gems.github.com
+    groove-1.wav
+    groove-2.wav
+    groove-3.wav
+    groove-4.wav
+    groove-5.wav
+    groove-6.wav
+
+Clawhammer uses the [WaveFile gem](http://www.github.com/jstrait/wavefile) to create the output wave files. Therefore, you'll need to have this gem installed on your machine. To do so, run the following command:
+
+  	gem install wavefile 
 
 About the HUB Format
 ====================
