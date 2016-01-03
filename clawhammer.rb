@@ -28,7 +28,7 @@ require 'wavefile'
 SOUNDS_PER_HUB = 6
 
 # HammerHead assumes that all sounds are in this format
-FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
+SAMPLE_FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
 
 if ARGV[0] == nil
   puts ""
@@ -61,9 +61,9 @@ SOUNDS_PER_HUB.times do |i|
   
   # Read sample data and write wave file
   output_file_name = "#{hub_title}-#{i + 1}.wav"
-  WaveFile::Writer.new(output_file_name, FORMAT) do |writer|
+  WaveFile::Writer.new(output_file_name, SAMPLE_FORMAT) do |writer|
     samples = hub_file.sysread(sample_data_length).unpack("s*")
-    writer.write(WaveFile::Buffer.new(samples, FORMAT))
+    writer.write(WaveFile::Buffer.new(samples, SAMPLE_FORMAT))
   end
   puts "Sound #{i + 1} extracted, #{sample_data_length} bytes written to #{output_file_name}."
 end
