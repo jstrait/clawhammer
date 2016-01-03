@@ -27,10 +27,7 @@ require 'wavefile'
 
 SOUNDS_PER_HUB = 6
 
-# HammerHead assumes that all sounds are:
-#   1 channel (mono)
-#   44100 samples per second (sample rate)
-#   16-bit
+# HammerHead assumes that all sounds are in this format
 FORMAT = WaveFile::Format.new(:mono, :pcm_16, 44100)
 
 if ARGV[0] == nil
