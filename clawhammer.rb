@@ -51,7 +51,7 @@ SOUNDS_PER_HUB.times do |i|
   #                Ignored by Clawhammer.
 
   # Read HUB title
-  hub_title_length = hub_file.sysread(1).unpack("c1")[0]
+  hub_title_length = hub_file.sysread(1).unpack("C1")[0]
   hub_title = hub_file.sysread(30).slice(0...hub_title_length)
   hub_title = hub_title.downcase.gsub(" ", "_")
 
