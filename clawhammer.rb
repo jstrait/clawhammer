@@ -22,7 +22,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-gem 'wavefile', '=0.6.0'
+gem 'wavefile', '=0.8.1'
 require 'wavefile'
 
 if ARGV[0] == nil
