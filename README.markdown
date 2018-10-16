@@ -89,4 +89,4 @@ Each header is 36 bytes, and has the following format:
 
 The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header.
 
-The sample data in each record only includes raw sample data, and not any headers specified by the \*.wav format. HammerHead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit <http://wavefilegem.com/how_wave_files_work.html>).
+The sample data in each record only includes raw sample data, and not any headers specified by the \*.wav format. HammerHead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, except for the payload size. (For more on the \*.wav format, visit <http://wavefilegem.com/how_wave_files_work.html>).
