@@ -55,20 +55,20 @@ SOUNDS_PER_HUB.times do |i|
   #                Ignored by Clawhammer.
 
   # Read HUB title
-  hub_title_length = hub_file.sysread(1).unpack(UNSIGNED_BYTE)[0]
-  hub_title = hub_file.sysread(30).slice(0...hub_title_length)
+  hub_title_length = hub_file.read(1).unpack(UNSIGNED_BYTE)[0]
+  hub_title = hub_file.read(30).slice(0...hub_title_length)
   hub_title = hub_title.downcase.gsub(" ", "_")
 
   # Read sample data size
-  sample_data_length = hub_file.sysread(4).unpack(UNSIGNED_INT_32_LITTLE_ENDIAN)[0]
+  sample_data_length = hub_file.read(4).unpack(UNSIGNED_INT_32_LITTLE_ENDIAN)[0]
 
   # Ignore the stretch flag
-  hub_file.sysread(1)
+  hub_file.read(1)
 
   # Read sample data and write wave file
   output_file_name = "#{hub_title}-#{i + 1}.wav"
   WaveFile::Writer.new(output_file_name, SAMPLE_FORMAT) do |writer|
-    samples = hub_file.sysread(sample_data_length).unpack("#{SIGNED_INT_16_LITTLE_ENDIAN}*")
+    samples = hub_file.read(sample_data_length).unpack("#{SIGNED_INT_16_LITTLE_ENDIAN}*")
     writer.write(WaveFile::Buffer.new(samples, SAMPLE_FORMAT))
   end
   puts "Sound ##{i + 1} extracted, written to #{output_file_name}"
