@@ -26,7 +26,7 @@ This will create six output files:
 
 Clawhammer uses the [WaveFile gem](http://wavefilegem.com/) to create the output wave files. Therefore, you'll need to have this gem installed on your machine. To do so, run the following command:
 
-  	gem install wavefile 
+    gem install wavefile
 
 About the HUB Format
 ====================
@@ -87,6 +87,6 @@ Each header is 36 bytes, and has the following format:
 </tr>
 </table>
 
-The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header. 
+The sample data payload follows the header. The length of the sample data is indicated in bytes 31-34 of the header.
 
 The sample data in each record only includes raw sample data, and not any headers specified by the \*.wav format. HammerHead assumes that samples are 16-bit, 1 channel (mono), and with a sample rate of 44100. Therefore, the header for each output \*.wav file will be identical, expect for the payload size. (For more on the \*.wav format, visit <http://ccrma.stanford.edu/courses/422/projects/WaveFormat/>).
